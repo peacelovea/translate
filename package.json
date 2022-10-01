@@ -1,0 +1,75 @@
+{
+  "name": "translate",
+  "displayName": "translateNamed",
+  "description": "没有英文词汇?一款能让你快速生成变量名的插件",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.49.0"
+  },
+  "publisher": "shiyubo",
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chendonming/translate"
+  },
+  "activationEvents": [
+    "onCommand:translate.helloWorld"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "title": "translate",
+        "properties": {
+          "translate.appid": {
+            "type": "string",
+            "default": "20221001001364861",
+            "description": "百度翻译API-appid"
+          },
+          "translate.secret": {
+            "type": "string",
+            "default": "8iaGzb7v0225xQ8SVxqq",
+            "description": "百度翻译API-密钥"
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "translate.translate",
+        "title": "translate: 中文翻译成英文"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "translate.translate",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "pnpm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.71.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "md5": "^2.3.0"
+  }
+}
